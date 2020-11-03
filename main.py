@@ -13,10 +13,10 @@ def intensidad(linea, data):
     for i in range(0, len(linea)):
         x, y = linea[i]
         inten += 255 - data[x-1][y-1]
-    return inten
+    return inten / len(linea)
 
 
-def blanquear(linea, data):
+def blanquear(linea, data):     # TODO en vez de a cero bajarlo un porcentaje
     for i in range(0, len(linea)):
         x, y = linea[i]
         data[x-1][y-1] = 255
@@ -27,10 +27,10 @@ if __name__ == '__main__':
     ##################################################
 
     n = 128
-    nHilos = 1000
+    nHilos = 10000
 
     imgName = "eva800.png"
-    coolSaveName = "eva800"
+    coolSaveName = "eva800avg"
 
     ##################################################
 
@@ -104,6 +104,8 @@ if __name__ == '__main__':
         x1, y1 = agujas[hilos[i + 1]]
         pygame.draw.line(screen, (255, 0, 0), (y0, x0), (y1, x1))
         pygame.display.update()
+        for event in pygame.event.get():    # refrescar el pygame pa que no pete
+            1
 
     print(hilos)
     print("DONE!!")
