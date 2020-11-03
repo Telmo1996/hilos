@@ -7,10 +7,13 @@ import pygame
 if __name__ == '__main__':
     #################################################################
 
-    fileName = 'evabyn128_1000'  # Sin .json
+    fileName = 'eva800avg128_10000'  # Sin .json
     saveExtension = '.png'
 
-    width, height = 800, 800
+    tamano = 1000
+    width, height = tamano, tamano
+
+    dibujarHasta = 1500
 
     #################################################################
 
@@ -31,6 +34,8 @@ if __name__ == '__main__':
 
     n = hilosJson["info"]["n"]
     nHilos = hilosJson["info"]["nHilos"]
+    if dibujarHasta > nHilos:
+        dibujarHasta = nHilos
 
     hilos = hilosJson["hilos"]
 
@@ -51,7 +56,7 @@ if __name__ == '__main__':
         screen.set_at(agujas[i], (255, 0, 0))
     pygame.display.update()
 
-    for i in range(0, nHilos):
+    for i in range(0, dibujarHasta):
         x0, y0 = agujas[hilos[i]]
         x1, y1 = agujas[hilos[i + 1]]
         pygame.draw.line(screen, (255, 0, 0), (y0, x0), (y1, x1))
