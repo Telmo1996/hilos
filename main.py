@@ -26,11 +26,11 @@ def blanquear(linea, data):     # TODO en vez de a cero bajarlo un porcentaje
 if __name__ == '__main__':
     ##################################################
 
-    n = 128
-    nHilos = 10000
+    n = 180
+    nHilos = 5000
 
-    imgName = "eva800.png"
-    coolSaveName = "eva800avg"
+    imgName = "evaV3.png"
+    coolSaveName = "evaV3"
 
     ##################################################
 
@@ -84,7 +84,6 @@ if __name__ == '__main__':
     # hilos[0]=currAguja
     for i in range(0, nHilos):
         maxIntensidad=0
-        nextAguja=currAguja
         for j in range(0, n):   # TODO maybe considerar aguja actual
             x0, y0 = agujas[currAguja]
             x1, y1 = agujas[j]
@@ -97,6 +96,8 @@ if __name__ == '__main__':
         x1, y1 = agujas[nextAguja]
         linea = list(bresenham(x0, y0, x1, y1))
         data = blanquear(linea, data)
+        if currAguja == nextAguja and i > 3:
+            break
         currAguja = nextAguja
         hilos[i+1] = currAguja
 
