@@ -10,10 +10,11 @@ from bresenham import bresenham
 
 def intensidad(linea, data):
     inten=0
-    for i in range(0, len(linea)):
+	longitud = len(linea);
+    for i in range(0, longitud):
         x, y = linea[i]
         inten += 255 - data[x-1][y-1]
-    return inten / len(linea)
+    return inten / longitud
 
 
 def blanquear(linea, data):     # TODO en vez de a cero bajarlo un porcentaje
